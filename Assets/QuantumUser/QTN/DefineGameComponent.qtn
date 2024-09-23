@@ -1,0 +1,63 @@
+input 
+{
+	FPVector2 Direction;
+	button Attack;
+	button SpawnBullet;
+}
+
+component PlayerInfo
+{
+	player_ref PlayerRef;
+	FP Damage;
+	FP Health;
+	FP CurrentHealth;
+	FP Speed;
+	asset_ref<EntityPrototype> Bullet;
+	PlayerFacing Facing;
+}
+
+component BulletInfo
+{
+	FPVector2 Direction;
+	EntityRef Owner;
+	PlayerFacing Facing;
+	FP Speed;
+	FP ExistTime;
+}
+
+enum PlayerFacing
+{
+	Left, Right
+}
+
+component BossInfo
+{
+	FP Time;
+	FP ChangeDirectionTime;
+	FP UseSkillTime;
+	FPVector2 Direction;
+	FP Health;
+	FP CurrentHealth;
+	asset_ref<EntityPrototype> Bullet;
+}
+
+component BossBulletInfo
+{
+	FP Speed;
+	FPVector2 Direction;
+	EntityRef Owner;
+	FP ExistTime;
+}
+
+enum GameState
+{
+	Playing, Win, Lose
+}
+
+global
+{
+	GameState CurrentGameState;
+}
+
+signal OnPlayerDead();
+signal OnBossDead();
